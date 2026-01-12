@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.1.1/dist/css/materialize.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.1.1/dist/js/materialize.min.js"></script>
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="main.css"/>
+</head>
+<body>
+<div class="container">
+    <h1 class="center-align">Offers</h1>
+    <form id="offerForm" class ="card-panel" enctype="multipart/form-data">
+        <div class="input-field">
+            <label for="title">Title:</label>
+            <input id="title" type="text" name="title" required="">
+        </div>
+        <div class="input-field">
+            <label for="description">description:</label>
+            <textarea id="description" class="materialize-textarea" name="description" required="" style="height: 45px;"></textarea>
+        </div>
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>Upload image:</span>
+                <input id="image" type="file" name="image" accept="image/*">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Upload an image">
+            </div>
+        </div>
+        <div class="input-field">
+            <label for="price"> Price (€):</label>
+            <input id="price" type="number" name="price" step="0.01" required="">
+        </div>
+        <button id="submitBtn" class="btn waver-effect waves-light" type="submit">Submit</button>
+        <ul id="wronginputPrompt"></ul>
+    </form>
+    <div id="offersContainer"></div>
+</div>
+</body>
+</html>

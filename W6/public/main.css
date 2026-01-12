@@ -1,0 +1,71 @@
+.image {
+    padding-top: 20px;
+}
+
+.file-field .btn {
+    background-color: cyan;
+    width: 150px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-field .btn span {
+    width: 100px;
+}
+
+span {
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.file-field {
+    padding-top: 20px;
+}
+
+.price {
+    padding-bottom: 20px;
+}
+
+#submitBtn {
+    background-color: cyan;
+    width: 150px;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#offersContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.offerDiv {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: rgba(60, 31, 76, 1);
+}
+
+.offerDiv img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.offerDiv p {
+    font-weight: normal;
+}
+
+.offerDiv p:last-child {
+    font-weight: bold;
+    font-size: 20px;
+}

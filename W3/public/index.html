@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.1.1/dist/css/materialize.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.1.1/dist/js/materialize.min.js"></script>
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="main.css"/>
+</head>
+<body>
+    <div id="main-canvas">
+        <header>
+            <nav class="cyan">
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo left">Pelipaja.net</a>
+                <a href="#" data-target="mobile"
+                class="sidenav-trigger right"><i
+                class="matrial-icons">Valikko</i></a> <!-- mobiililla valikko nappi, muuten Asia1, Asia2 napit -->
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#">Asia1</a></li>
+                    <li><a href="#">Asia2</a></li>
+                </ul>
+            </div>
+            </nav>
+            <ul class="sidenav" id="mobile">
+                    <li><a href="#">Asia1</a></li>
+                    <li><a href="#">Asia2</a></li>
+            </ul>
+        </header>
+        <main class="userinfo container section">
+            <div id="userinfo-fields" class="userinfo-group">
+                <form id="userForm">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name">
+                    <label for="lname">Email:</label>
+                    <input type="text" id="email">
+                    <div id="buttons" class="button-container">
+                        <button id="submit-button">Submit</button>
+                        <button id="getUsers">Get users</button>
+                    </div>                 
+                </form>
+                <ul id="userList" class="print-userinfo-field"></ul>
+            </div>
+
+        </main>
+    </div>
+</body>
+</html>
