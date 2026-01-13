@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import path from 'path';
 import router from './src/routes/index';
 import userRouter from './src/routes/user';
+import topicRouter from './src/routes/topic';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use('/data', express.static(path.join(__dirname, '../data')));
 app.use('/', router);
 app.use('/api/user', userRouter);
+app.use('/api', topicRouter);
 
 app.listen(port, () => {
 	console.log(`Server running on http://localhost:${port}`);
