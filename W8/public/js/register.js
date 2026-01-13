@@ -1,33 +1,35 @@
 const initializeRegister = () => {
-    document.getElementById("registerForm").addEventListener("submit", (event) => {
-        fetchData(event)
-    })
-}
+	document.getElementById('registerForm').addEventListener('submit', (event) => {
+		fetchData(event);
+	});
+};
 
-const fetchData = async(event) => {
-    event.preventDefault()
+const fetchData = async (event) => {
+	event.preventDefault();
 
-    const formData =  {
-        email: event.target.email.value,
-        password: event.target.password.value,
-    }
+	const formData = {
+		email: event.target.email.value,
+		username: event.target.username.value,
+		password: event.target.password.value,
+		isAdmin: event.target.isAdmin.checked,
+	};
 
-    try {
-        const response = await fetch("/api/user/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData)
-        });
-        if(!response.ok){
-            document.getElementById("error").innerText = "Error while trying to register user. Please try again."
-        } else {
-            window.location.href = "/login.html"
-        }
-    } catch (error) {
-        console.log(`Error while trying to register: ${error.message}`)
-    }
-}
+	try {
+		const response = await fetch('/api/user/register', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(formData),
+		});
+		if (!response.ok) {
+			document.getElementById('error').innerText = 'Error while trying to register user. Please try again.';
+		} else {
+			window.location.href = '/index.html';
+		}
+	} catch (error) {
+		console.log(`Error while trying to register: ${error.message}`);
+	}
+};
 
-initializeRegister()
+initializeRegister();

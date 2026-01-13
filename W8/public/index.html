@@ -5,15 +5,41 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.1.1/dist/css/materialize.min.css" />
 		<script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.1.1/dist/js/materialize.min.js"></script>
-		<title>Week 7</title>
+		<title>Thred it</title>
 		<link rel="stylesheet" href="./css/main.css" />
 		<script src="./js/main.js" defer></script>
 	</head>
 	<body>
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">Thred it</a>
+				<ul class="right">
+					<li>
+						<form id="loginForm" class="row">
+							<div class="input-field col">
+								<input type="text" id="email" name="email" class="navbar-input" required />
+								<label for="email">Email</label>
+							</div>
+							<div class="input-field col">
+								<input type="password" id="password" name="password" class="navbar-input" required />
+								<label for="password">Password</label>
+							</div>
+							<div class="col">
+								<button type="submit" class="btn waves-effect waves-light">LOGIN</button>
+							</div>
+							<div class="col">
+								<a href="/register.html" class="btn waves-effect waves-light">REGISTER</a>
+							</div>
+						</form>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
 		<div class="container">
-			<h2>Welcome</h2>
-			<p id="message"></p>
-			<button id="logout">Logout</button>
+			<h1>Posts</h1>
+			<div id="topicForm"></div>
+			<div id="topics"></div>
 		</div>
 	</body>
 </html>
