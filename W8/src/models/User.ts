@@ -10,8 +10,8 @@ interface IUser extends Document {
 const UserSchema: Schema = new Schema({
 	email: { type: String, required: true, unique: true },
 	password: { type: String, required: true },
-	username: { type: String, required: false },
-	isAdmin: { type: Boolean, required: false },
+	username: { type: String, required: true },
+	isAdmin: { type: Boolean, required: true },
 });
 
 const User: mongoose.Model<IUser> = mongoose.model<IUser>('User', UserSchema);
