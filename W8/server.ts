@@ -15,7 +15,7 @@ const port: number = parseInt(process.env.PORT || '3000');
 
 // MongoDB connection
 mongoose
-	.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/advancedweb')
+	.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/testdb')
 	.then(() => console.log('Connected to MongoDB'))
 	.catch((error) => console.error('MongoDB connection error:', error));
 
