@@ -23,7 +23,7 @@ router.post('/topic', validateToken, async (req: CustomRequest, res: Response) =
 		});
 
 		await newTopic.save();
-		return res.status(201).json(newTopic);
+		return res.status(200).json(newTopic);
 	} catch (error: any) {
 		console.error(`Error creating topic: ${error}`);
 		return res.status(500).json({ error: 'Internal Server Error' });
