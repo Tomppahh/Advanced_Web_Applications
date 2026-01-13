@@ -1,124 +1,91 @@
-import { Request, Response, Router } from "express";
-import { body, Result, ValidationError, validationResult } from "express-validator"
-import bcrypt from "bcrypt"
-import jwt from "jsonwebtoken"
-import fs from "fs"
-import path from "path"
+import { Request, Response, Router } from 'express';
+import { body, Result, ValidationError, validationResult } from 'express-validator';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { User } from '../models/User';
+import dotenv from 'dotenv';
 
-interface IUser {
-    email: string
-    password: string
-}
+dotenv.config();
 
-const usersFilePath = path.join(__dirname, "../../../data/users.json")
+const router: Router = Router();
 
-function readUsers(): IUser[] {
-    try {
-        const data = fs.readFileSync(usersFilePath, "utf-8")
-        return JSON.parse(data)
-    } catch (error) {
-        return []
-    }
-}
+router.post(
+	'/register',
+	body('email').trim().isLength({ min: 3 }),
+	body('password').isLength({ min: 4 }),
+	body('username').isLength({ min: 4 }),
+	body('isAdmin').isLength({ min: 4 }),
+	async (req: Request, res: Response) => {
+		const errors: Result<ValidationError> = validationResult(req);
 
-function writeUsers(users: IUser[]) {
-    fs.writeFileSync(usersFilePath, JSON.stringify(users))
-}
+		if (!errors.isEmpty()) {
+			return res.status(400).json({ errors: errors.array() });
+		}
 
-const router: Router = Router()
+		try {
+			const existingUser = await User.findOne({ email: req.body.email });
+			if (existingUser) {
+				return res.status(403).json({ message: 'Email already exists' });
+			}
 
-router.post("/register",
-    body("email").trim().isLength({min: 3}),
-    body("password").isLength({min: 4}),
-    async (req: Request, res: Response) => {
-        const errors: Result<ValidationError> = validationResult(req)
+			const salt: string = bcrypt.genSaltSync(parseInt(process.env.SALT_ROUNDS || '6'));
+			const hash: string = bcrypt.hashSync(req.body.password, salt);
 
-        if(!errors.isEmpty()){
-            return res.status(400).json({errors: errors.array()})
-        }
+			const newUser = new User({
+				email: req.body.email,
+				password: hash,
+				username: req.body.username,
+				isAdmin: req.body.isAdmin,
+			});
 
-        try {
-            const users = readUsers()
-            let existingUser = null
-            for (let i = 0; i < users.length; i++) {
-                if (users[i].email === req.body.email) {
-                    existingUser = users[i]
-                    break
-                }
-            }
-            if (existingUser) {
-                return res.status(403).json({message: "Email already exists"})
-            }
-            
-            const salt: string = bcrypt.genSaltSync(6)
-            const hash: string = bcrypt.hashSync(req.body.password, salt)
+			await newUser.save();
 
-            const newUser: IUser = {
-                email: req.body.email,
-                password: hash
-            }
-            
-            users.push(newUser)
-            writeUsers(users)
+			return res.status(200).json({
+				email: newUser.email,
+				password: newUser.password,
+				username: newUser.username,
+				isAdmin: newUser.isAdmin,
+			});
+		} catch (error: any) {
+			console.error(`Error during registration: ${error}`);
+			return res.status(500).json({ error: 'Internal Server Error' });
+		}
+	}
+);
 
-            return res.status(200).json({
-                email: newUser.email,
-                password: newUser.password
-            })
+router.post('/login', body('email').trim().isLength({ min: 3 }), body('password').isLength({ min: 4 }), async (req: Request, res: Response) => {
+	const errors: Result<ValidationError> = validationResult(req);
 
-        } catch (error: any) {
-            console.error(`Error during registration: ${error}`)
-            return res.status(500).json({error: "Internal Server Error"})
-        }
-    }
-)
+	if (!errors.isEmpty()) {
+		return res.status(400).json({ errors: errors.array() });
+	}
 
-router.post("/login",
-    body("email").trim().isLength({min: 3}),
-    body("password").isLength({min: 4}),
-    async (req: Request, res: Response) => {
-        const errors: Result<ValidationError> = validationResult(req)
+	try {
+		const user = await User.findOne({ email: req.body.email });
+		if (!user) {
+			return res.status(401).json({ message: 'Invalid credentials' });
+		}
 
-        if(!errors.isEmpty()){
-            return res.status(400).json({errors: errors.array()})
-        }
+		const match = bcrypt.compareSync(req.body.password, user.password);
+		if (!match) {
+			return res.status(401).json({ message: 'Invalid credentials' });
+		}
 
-        try {
-            const users = readUsers()
-            let user = null
-            for (let i = 0; i < users.length; i++) {
-                if (users[i].email === req.body.email) {
-                    user = users[i]
-                    break
-                }
-            }
-            if (!user) {
-                return res.status(401).json({message: "Invalid credentials"})
-            }
+		const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET || 'default-secret');
+		return res.status(200).json({ token: token });
+	} catch (error: any) {
+		console.error(`Error during login: ${error}`);
+		return res.status(500).json({ error: 'Internal Server Error' });
+	}
+});
+router.get('/list', async (req: Request, res: Response) => {
+	try {
+		const users = await User.find({}, { password: 0 });
+		return res.status(200).json(users);
+	} catch (error: any) {
+		console.log(`Error while fetching users ${error}`);
+		return res.status(500).json({ error: 'Internal Server Error' });
+	}
+});
 
-            const match = bcrypt.compareSync(req.body.password, user.password)
-            if (!match) {
-                return res.status(401).json({message: "Invalid credentials"})
-            }
-
-            const token = jwt.sign({email: user.email}, process.env.SECRET as string)
-            return res.status(200).json({token: token})
-
-        } catch (error: any) {
-            console.error(`Error during login: ${error}`)
-            return res.status(500).json({error: "Internal Server Error"})
-        }
-    }
-)
-router.get("/list", async (req: Request, res: Response) => {
-    try {
-        const users = readUsers()
-        return res.status(200).json(users)
-        return res.status(200).json(users)
-    } catch (error: any) {
-        console.log(`Error while fetching users ${error}`)
-        return res.status(500).json({error: "Internal Server Error"})
-    }
-})
-
-export default router
+export default router;
