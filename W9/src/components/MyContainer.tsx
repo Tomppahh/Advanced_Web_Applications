@@ -4,8 +4,8 @@ import MyList from './MyList';
 function MyContainer() {
 	const headerText = 'Task List Header';
 	const [items, setItems] = useState([
-		{ id: '1', text: 'This is first task', clicked: false },
-		{ id: '2', text: 'This is second task', clicked: false },
+		{ id: 1, text: 'This is first task', clicked: false },
+		{ id: 2, text: 'This is second task', clicked: false },
 	]);
 	const [inputText, setInputText] = useState('');
 
