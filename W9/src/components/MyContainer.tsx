@@ -27,7 +27,7 @@ function MyContainer() {
 
 	return (
 		<div>
-			<MyList header={headerText} items={items} onItemClick={toggleItem} />
+			<MyList header={headerText} items={items} updateList={toggleItem} />
 			<textarea value={inputText} onChange={(e) => setInputText(e.target.value)} placeholder="Enter new task:" />
 			<button onClick={addItem}>Add Task</button>
 		</div>
