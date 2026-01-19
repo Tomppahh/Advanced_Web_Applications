@@ -5,7 +5,7 @@
 		"useDefineForClassFields": true,
 		"lib": ["ES2022", "DOM", "DOM.Iterable"],
 		"module": "ESNext",
-		"types": ["vite/client"],
+		"types": ["vite/client", "jest"],
 		"skipLibCheck": true,
 		"esModuleInterop": true,
 
@@ -25,5 +25,6 @@
 		"noFallthroughCasesInSwitch": true,
 		"noUncheckedSideEffectImports": true
 	},
-	"include": ["src"]
+	"include": ["src/**/*.ts", "src/**/*.tsx", "__test__/**/*.ts", "__test__/**/*.tsx"],
+	"exclude": ["node_modules"]
 }
