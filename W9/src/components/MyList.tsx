@@ -7,10 +7,10 @@ type TItem = {
 interface ListProps {
 	header: string;
 	items: TItem[];
-	onItemClick: (id: string) => void;
+	updateList: (id: string) => void;
 }
 
-function MyList({ header, items, onItemClick }: ListProps) {
+function MyList({ header, items, updateList }: ListProps) {
 	return (
 		<div>
 			<h2>{header}</h2>
@@ -18,7 +18,7 @@ function MyList({ header, items, onItemClick }: ListProps) {
 				{items.map((item) => (
 					<li
 						key={item.id}
-						onClick={() => onItemClick(item.id)}
+						onClick={() => updateList(item.id)}
 						style={{
 							textDecoration: item.clicked ? 'line-through' : 'none',
 							cursor: 'pointer',
