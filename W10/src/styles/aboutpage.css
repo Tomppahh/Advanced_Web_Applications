@@ -1,0 +1,18 @@
+.aboutpage-bg {
+	width: 100%;
+	display: flex;
+	flex-direction: column; /* Stack items vertically */
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 20px;
+	background: lightblue;
+}
+
+.aboutpage-bg h1 {
+	margin: 0;
+	position: static;
+	left: auto;
+	top: auto;
+	transform: none;
+}

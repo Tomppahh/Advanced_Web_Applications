@@ -1,0 +1,55 @@
+.header-bg {
+	width: 100%;
+	background-color: grey;
+	position: relative;
+	left: 50%;
+	right: 50%;
+	margin-left: -50vw;
+	margin-right: -50vw;
+	min-height: 60px;
+	position: fixed;
+	top: 0;
+}
+
+.header {
+	max-width: 1280px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.header nav {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.header ul {
+	display: flex;
+	align-items: center;
+	list-style: none;
+	padding: 0;
+}
+
+.header a {
+	color: white;
+	text-decoration: none;
+	padding-right: 30px;
+	font-weight: bold;
+}
+
+.header ul button {
+	margin-right: 10px;
+	width: 50px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.header ul li:last-child button {
+	margin-right: 10px;
+}
