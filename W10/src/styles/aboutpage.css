@@ -1,12 +1,14 @@
 .aboutpage-bg {
 	width: 100%;
 	display: flex;
-	flex-direction: column; 
+	flex-direction: column;
 	justify-content: center;
+	min-height: 130vh;
 	align-items: center;
-	text-align: center;
+	text-align: left;
 	font-size: 20px;
-	background: lightblue;
+	background: rgb(195, 195, 195);
+	color: black;
 }
 
 .aboutpage-bg h1 {

@@ -1,7 +1,8 @@
+import '../styles/index.css';
 function MyContainer() {
 	const text = 'this is coming from MyContainer';
 	return (
-		<div>
+		<div className="home-container">
 			<header>{text}</header>
 		</div>
 	);
