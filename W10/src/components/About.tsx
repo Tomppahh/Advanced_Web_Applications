@@ -1,5 +1,8 @@
 import '../styles/aboutpage.css';
-import data from '../data/aboutpagecontent.json';
+const data = {
+	title: 'About Us',
+	content: 'this is aboutpage content',
+};
 function About() {
 	return (
 		<div className="aboutpage-bg">

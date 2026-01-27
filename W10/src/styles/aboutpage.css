@@ -1,7 +1,7 @@
 .aboutpage-bg {
 	width: 100%;
 	display: flex;
-	flex-direction: column; /* Stack items vertically */
+	flex-direction: column; 
 	justify-content: center;
 	align-items: center;
 	text-align: center;
