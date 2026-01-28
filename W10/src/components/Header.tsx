@@ -17,10 +17,14 @@ function Header() {
 							<a href="/about">{t('header2')}</a>
 						</li>
 						<li>
-							<button onClick={() => i18n.changeLanguage('fi')}>FI</button>
+							<button id="fi" onClick={() => i18n.changeLanguage('fi')}>
+								FI
+							</button>
 						</li>
 						<li>
-							<button onClick={() => i18n.changeLanguage('en')}>EN</button>
+							<button id="en" onClick={() => i18n.changeLanguage('en')}>
+								EN
+							</button>
 						</li>
 					</ul>
 				</nav>
