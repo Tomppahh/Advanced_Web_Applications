@@ -16,3 +16,21 @@
 	border-radius: 8px;
 	text-align: center;
 }
+
+.showmorebutton {
+	display: block;
+	margin: 32px auto 0 auto;
+	padding: 12px 32px;
+	background-color: #1976d2;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background 0.2s;
+}
+
+.showmorebutton:disabled {
+	background-color: #bdbdbd;
+	cursor: not-allowed;
+}

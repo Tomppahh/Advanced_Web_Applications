@@ -24,17 +24,24 @@ function About() {
 		fetchData();
 	}, []); // tähän arrayhyn täytettä jos dataURL olis esim dynaaminen ja vois vaihtua!
 	// https://react.dev/reference/react/useEffect#usage
-
+	const [visibleCount, setVisibleCount] = useState(12);
 	return (
 		<div className="aboutpage-bg">
 			<div className="grid-container">
-				{APIdata.map((post: Post) => (
+				{APIdata.slice(0, visibleCount).map((post: Post) => (
 					<div className="grid-item" key={post.id}>
 						<h3>{post.title}</h3>
 						<p>{post.body}</p>
 					</div>
 				))}
 			</div>
+			<button
+				className="showmorebutton"
+				onClick={() => setVisibleCount(visibleCount + 12)}
+				disabled={visibleCount >= APIdata.length}
+			>
+				Show more
+			</button>
 		</div>
 	);
 }
