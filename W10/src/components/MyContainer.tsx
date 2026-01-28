@@ -1,9 +1,10 @@
 import '../styles/index.css';
+import { useTranslation } from 'react-i18next';
 function MyContainer() {
-	const text = 'this is coming from MyContainer';
+	const { t } = useTranslation();
 	return (
 		<div className="home-container">
-			<header>{text}</header>
+			<header>{t('frontpage')}</header>
 		</div>
 	);
 }

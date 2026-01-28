@@ -1,6 +1,9 @@
 import '../styles/header.css';
+import { useTranslation } from 'react-i18next';
 
 function Header() {
+	const { t, i18n } = useTranslation();
+
 	return (
 		<div className="header-bg">
 			<header className="header">
@@ -8,16 +11,16 @@ function Header() {
 				<nav>
 					<ul>
 						<li>
-							<a href="/">Home</a>
+							<a href="/">{t('home')}</a>
 						</li>
 						<li>
-							<a href="/about">About</a>
+							<a href="/about">{t('about')}</a>
 						</li>
 						<li>
-							<button>FI</button>
+							<button onClick={() => i18n.changeLanguage('fi')}>FI</button>
 						</li>
 						<li>
-							<button>EN</button>
+							<button onClick={() => i18n.changeLanguage('en')}>EN</button>
 						</li>
 					</ul>
 				</nav>
