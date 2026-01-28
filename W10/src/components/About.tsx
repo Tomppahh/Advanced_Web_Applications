@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import '../styles/aboutpage.css';
+import '../styles/About.css';
 
 function About() {
 	const dataURL = 'https://jsonplaceholder.typicode.com/posts';
@@ -27,16 +27,14 @@ function About() {
 
 	return (
 		<div className="aboutpage-bg">
-			<h1>About Us</h1>
-			<p>liirum laarum</p>
-			<ul>
-				{APIdata.slice(0, 5).map((post: Post) => (
-					<div key={post.id}>
+			<div className="grid-container">
+				{APIdata.map((post: Post) => (
+					<div className="grid-item" key={post.id}>
 						<h3>{post.title}</h3>
 						<p>{post.body}</p>
 					</div>
 				))}
-			</ul>
+			</div>
 		</div>
 	);
 }

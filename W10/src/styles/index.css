@@ -2,20 +2,4 @@ body {
 	font-family: 'Inter', system-ui, sans-serif;
 	background: #000000;
 	color: #fff; /* or #222 if you want dark text */
-	min-height: 100vh;
-	line-height: 1.5;
-}
-
-#root {
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-}
-
-.container {
-	min-height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
 }
