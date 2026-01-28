@@ -11,10 +11,10 @@ function Header() {
 				<nav>
 					<ul>
 						<li>
-							<a href="/">{t('Homepagetitle')}</a>
+							<a href="/">{t('header1')}</a>
 						</li>
 						<li>
-							<a href="/about">{t('Aboutus')}</a>
+							<a href="/about">{t('header2')}</a>
 						</li>
 						<li>
 							<button onClick={() => i18n.changeLanguage('fi')}>FI</button>

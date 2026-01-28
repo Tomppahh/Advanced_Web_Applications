@@ -1,5 +1,5 @@
 {
-	"Homepagetitle": "Etusivu",
-	"Aboutus": "Tietoa Meistä",
-	"Frontpagecontent": "Tämä on etusivu"
+	"header1": "Etusivu",
+	"header2": "Tietoa Meistä",
+	"content": "Tämä on etusivu"
 }

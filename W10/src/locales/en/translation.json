@@ -1,5 +1,5 @@
 {
-	"Homepagetitle": "Home",
-	"Aboutus": "About",
-	"Frontpagecontent": "This is the front page"
+	"header1": "Home",
+	"header2": "About",
+	"content": "This is the front page"
 }
