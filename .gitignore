@@ -6,3 +6,4 @@ package.json
 *.zip
 *.rar
 **/public/images/
+**/__test__
