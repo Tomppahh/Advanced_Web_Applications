@@ -4,7 +4,7 @@ function MyContainer() {
 	const { t } = useTranslation();
 	return (
 		<div className="home-container">
-			<header>{t('frontpage')}</header>
+			<header>{t('Frontpage')}</header>
 		</div>
 	);
 }
