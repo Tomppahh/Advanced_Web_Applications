@@ -24,7 +24,9 @@ export default function FrontPage() {
 		const fetchJoke = async () => {
 			setLoading(true);
 			try {
-				const response = await fetch('https://official-joke-api.appspot.com/random_joke', { signal: controller.signal });
+				const response = await fetch('https://official-joke-api.appspot.com/random_joke', {
+					signal: controller.signal,
+				});
 				const data: Joke = await response.json();
 				setJoke(data);
 			} catch (e) {
@@ -48,7 +50,7 @@ export default function FrontPage() {
 	return (
 		<div style={{ padding: '2rem', textAlign: 'center' }}>
 			<Button variant="contained" onClick={handleFetchJoke}>
-				Get Random Joke
+				Get Joke
 			</Button>
 
 			{loading && (
