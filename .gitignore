@@ -1,4 +1,3 @@
-package.json
 **/node_modules
 **/data
 **/.env
@@ -6,4 +5,3 @@ package.json
 *.zip
 *.rar
 **/public/images/
-**/__test__

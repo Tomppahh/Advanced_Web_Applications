@@ -4,9 +4,11 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import './styles/index.css';
 import App from './routes/App.tsx';
 import Saved from './routes/Saved.tsx';
+import Header from './components/Header.tsx';
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
+		<Header />
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<App />} />
