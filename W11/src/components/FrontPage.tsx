@@ -2,17 +2,16 @@ import { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
+import { IJoke } from '../hooks/useJokes';
 
-interface Joke {
-	type: string;
-	setup: string;
-	punchline: string;
-	id: number;
+interface FrontPageProps {
+	saveJoke?: (joke: IJoke) => boolean;
 }
 
-export default function FrontPage() {
-	const [joke, setJoke] = useState<Joke | null>(null);
+export default function FrontPage({ saveJoke }: FrontPageProps) {
+	const [joke, setJoke] = useState<IJoke | null>(null);
 	const [loading, setLoading] = useState<boolean>(false);
 	const [fetchTrigger, setFetchTrigger] = useState<number>(0);
 
@@ -27,7 +26,7 @@ export default function FrontPage() {
 				const response = await fetch('https://official-joke-api.appspot.com/random_joke', {
 					signal: controller.signal,
 				});
-				const data: Joke = await response.json();
+				const data: IJoke = await response.json();
 				setJoke(data);
 			} catch (e) {
 				console.log('Error fetching joke: ' + e);
@@ -69,6 +68,13 @@ export default function FrontPage() {
 							{joke.punchline}
 						</Typography>
 					</CardContent>
+					{saveJoke && (
+						<CardActions sx={{ justifyContent: 'center' }}>
+							<Button variant="outlined" onClick={() => saveJoke(joke)}>
+								Save joke
+							</Button>
+						</CardActions>
+					)}
 				</Card>
 			)}
 		</div>

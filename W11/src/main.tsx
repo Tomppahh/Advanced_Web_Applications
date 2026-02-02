@@ -1,19 +1,15 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './styles/index.css';
-import App from './routes/App.tsx';
-import Saved from './routes/Saved.tsx';
-import Header from './components/Header.tsx';
+import App from './App';
+import Header from './components/Header';
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
-		<Header />
 		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<App />} />
-				<Route path="/saved" element={<Saved />} />
-			</Routes>
+			<Header />
+			<App />
 		</BrowserRouter>
 	</StrictMode>,
 );
