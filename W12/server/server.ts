@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import bookRouter from './src/routes/book';
+import cors, { CorsOptions } from 'cors';
 
 // Dotenv config
 dotenv.config();
@@ -11,6 +12,15 @@ dotenv.config();
 // Create server
 const app: Express = express();
 const port: number = parseInt(process.env.PORT as string) || 3001;
+
+// CORS
+if (process.env.NODE_ENV === 'development') {
+	const corsOptions: CorsOptions = {
+		origin: 'http://localhost:3000',
+		optionsSuccessStatus: 200,
+	};
+	app.use(cors(corsOptions));
+}
 
 // Settings
 app.use(express.json());
