@@ -9,7 +9,7 @@ interface IBook extends Document {
 const BookSchema: Schema = new Schema({
 	name: { type: String, required: true },
 	author: { type: String, required: true },
-	pages: { type: String, required: true },
+	pages: { type: Number, required: true },
 });
 
 const Book: mongoose.Model<IBook> = mongoose.model<IBook>('Book', BookSchema);

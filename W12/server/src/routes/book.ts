@@ -1,4 +1,4 @@
-import { Router, Response } from 'express';
+import { Router, Response, Request } from 'express';
 import { Book } from '../models/Books';
 
 const router: Router = Router();
@@ -15,6 +15,30 @@ router.post('/api/book', async (req, res: Response) => {
 	} catch (error) {
 		console.error(`Error creating topic: ${error}`);
 		res.status(500).json({ error: 'Failed to create book' });
+	}
+});
+
+router.get('/api/getbooks/', async (req: Request, res: Response) => {
+	try {
+		const books = await Book.find();
+		res.json(books);
+	} catch (error) {
+		console.error(`Error fetching books: ${error}`);
+		res.status(500).json({ error: 'Failed to fetch book data in /api/book/ ' });
+	}
+});
+
+router.get('/api/book/:name', async (req: Request, res: Response) => {
+	try {
+		const bookName = decodeURIComponent(req.params.name);
+		const book = await Book.findOne({ name: bookName });
+		if (!book) {
+			return res.status(404).json({ error: 'Book not found' });
+		}
+		res.json(book);
+	} catch (error) {
+		console.error(`Error fetching book: ${error}`);
+		res.status(500).json({ error: 'Failed to fetch book' });
 	}
 });
 

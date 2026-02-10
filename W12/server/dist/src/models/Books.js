@@ -38,7 +38,7 @@ const mongoose_1 = __importStar(require("mongoose"));
 const BookSchema = new mongoose_1.Schema({
     name: { type: String, required: true },
     author: { type: String, required: true },
-    pages: { type: String, required: true },
+    pages: { type: Number, required: true },
 });
 const Book = mongoose_1.default.model('Book', BookSchema);
 exports.Book = Book;

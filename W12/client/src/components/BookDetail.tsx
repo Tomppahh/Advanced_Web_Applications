@@ -28,7 +28,7 @@ function BookDetail() {
 		fetchBook();
 	}, [bookName]);
 
-	// if (!book) return <NotFound />;
+	if (!book) return <NotFound />;
 
 	return (
 		<div>

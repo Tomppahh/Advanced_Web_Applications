@@ -1,4 +1,4 @@
-import express, { Express } from 'express';
+import express, { Express, Request, Response } from 'express';
 import path from 'path';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
@@ -20,6 +20,11 @@ if (process.env.NODE_ENV === 'development') {
 		optionsSuccessStatus: 200,
 	};
 	app.use(cors(corsOptions));
+} else if (process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.resolve(__dirname, '../../client/dist')));
+	app.get('*', (req: Request, res: Response) => {
+		res.sendFile(path.resolve(__dirname, '../../client/dist', 'index.html'));
+	});
 }
 
 // Settings
