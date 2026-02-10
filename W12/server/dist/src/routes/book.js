@@ -18,3 +18,4 @@ router.post('/api/book', async (req, res) => {
         res.status(500).json({ error: 'Failed to create book' });
     }
 });
+exports.default = router;
