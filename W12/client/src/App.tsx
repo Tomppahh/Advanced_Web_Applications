@@ -1,6 +1,6 @@
+import './App.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./App.css"
 
 function App() {
 	const [name, setName] = useState<string>('');
