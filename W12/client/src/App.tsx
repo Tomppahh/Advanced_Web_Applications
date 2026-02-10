@@ -1,10 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './App.css';
 
 function App() {
 	const [name, setName] = useState<string>('');
 	const [author, setAuthor] = useState<string>('');
 	const [pages, setNumber] = useState<number>(0);
+	type Book = {
+		_id: string;
+		name: string;
+		author: string;
+		pages: number;
+	};
+	const [books, setBooks] = useState<Book[]>([]);
+	const navigate = useNavigate();
 
 	const handleSubmission = async (name: string, author: string, pages: number) => {
 		try {
@@ -19,22 +28,31 @@ function App() {
 					pages: pages,
 				}),
 			});
-			console.log(response + ' RESPONSE DEBUG:');
 			if (!response.ok) {
 				throw new Error('Error fetching data');
 			}
 			const data = await response.json();
-			console.log(data);
-			if (data.token) {
-				localStorage.setItem('token', data.token);
-				window.location.href = '/';
-			}
+			navigate(`/book/${encodeURIComponent(data.name)}`);
 		} catch (error) {
 			if (error instanceof Error) {
 				console.log(`Error when trying to add book: ${error.message}`);
 			}
 		}
 	};
+
+	const fetchBooks = async () => {
+		try {
+			const response = await fetch(`/api/getbooks`);
+			const data = await response.json();
+			setBooks(data);
+		} catch (error) {
+			console.error('Error: ', error);
+		}
+	};
+
+	useEffect(() => {
+		fetchBooks();
+	}, []);
 
 	return (
 		<>
@@ -46,6 +64,15 @@ function App() {
 				<button onClick={() => handleSubmission(name, author, pages)} type="submit" id="submit">
 					SUBMIT
 				</button>
+			</div>
+			<div className="showBooksDiv">
+				<ul>
+					{books.map((book) => (
+						<li key={book._id}>
+							<strong>{book.name}</strong> by {book.author} ({book.pages} pages)
+						</li>
+					))}
+				</ul>
 			</div>
 		</>
 	);
